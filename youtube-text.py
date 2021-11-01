@@ -1,16 +1,3 @@
-####
-# 処理の流れ
-# （１）ページURLを取得
-# （２）URLを開く
-# （３）文字起こしボタンを押下
-# （４）タイムラインを非表示
-# （５）ページ要素解析
-# （６）文字起こしテキストを取得
-# （７）テキストファイルを作成
-# （８）テキストファイルに貼り付け
-# （９）テキストをダウンロード
-# （１０）完了メッセージ
-# ###
 
 import time
 import openpyxl
@@ -39,9 +26,6 @@ options.add_argument('--proxy-server="direct://"'); # Proxy経由ではなく直
 options.add_argument('--proxy-bypass-list=*'); #全てのホスト名
 options.add_argument('--start-maximized'); #起動時にウインドウを最大化する
 
-#WebDriverのパスを指定(絶対でも相対パスでも可)
-#DRIVER_PATH = r'C:\Sample\django\News\chromedriver_win32\chromedriver.exe' #ローカルはクロームのバージョンと互換しなかった
-
 try:
 
     #ブラウザの起動
@@ -51,7 +35,7 @@ try:
     driver.implicitly_wait(5)
 
     # webページにアクセスする ここを取得するようにしたい
-    url = 'https://www.youtube.com/watch?v=VyzqHFdzBKg'
+    url = 'https://www.youtube.com/watch?v=VyzqHFdzBKg'　#今は直打ち
     driver.get(url)
 
     #動画のタイトルを取得
@@ -75,14 +59,6 @@ try:
     element.click() #クリック処理
 
     time.sleep(5)
-
-    #文字起こしのテキストを取得していく
-    #タイムラインは消さなくてもできるけど消しても早そうと思ったけど、厳密なボタン要素ではないのでclickで動かん
-    # selecter3 = 'div#panels > ytd-engagement-panel-section-list-renderer > div#header > ytd-engagement-panel-title-header-renderer > div#header > div#menu > ytd-menu-renderer > yt-icon-button'
-    # element = driver.find_element_by_css_selector(selecter3) #要素を検索
-    # print("文字起こしウィジェットその他ボタンクリック")
-    # element.click() #クリック処理
-    # time.sleep(5)
 
     #エクセルを新規作成
     book = openpyxl.Workbook()
